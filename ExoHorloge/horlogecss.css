@@ -1,14 +1,20 @@
-﻿body{
+﻿body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 40px;
-
+    margin: 0;
 }
-
-#h1,
-#center{
+#container {
+    height: 100vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    height: 100vh; //pour viewport heigth;
-    color: slategray; //pour viewport heigth;
+    align-items: center;
+}
+#boutons {
+    display: flex;
+    gap: 15px;
+}
+input[type="button"] {
+    font-size: 30px;
+    padding: 10px 20px;
 }

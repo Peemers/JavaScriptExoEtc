@@ -1,16 +1,22 @@
 ﻿<!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns:input="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Horloge</title>
-  <script src="/ExoHorloge/script.js" defer></script>
-  <link rel="stylesheet" href="/ExoHorloge/horlogecss.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge</title>
+    <script src="/ExoHorloge/script.js" defer></script>
+    <link rel="stylesheet" href="/ExoHorloge/horlogecss.css">
 </head>
 <body>
-<div id="center">
-  <h1 id="h1">Le petit fond d'écran à l'ancienne</h1>
-  <input type="password" name="" id="password">
+<div id="container">
+    <h1 id="h1">Le petit fond d'écran à l'ancienne</h1>
+
+    <div id="boutons">
+        <input type="button" value="Paris" id="btnParis">
+        <input type="button" value="Moscou" id="btnMoscou">
+        <input type="button" value="NewYork" id="btnNY">
+    </div>
 </div>
+
 </body>
 </html>
