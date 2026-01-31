@@ -14,48 +14,60 @@ function changerCouleur(){
 }
 //setInterval(changerCouleur, 1000);
 
-function horlogeParis()
+function horlogeMonde(fuseau = "Paris") //fonction avec para optionnel avec par defaut Paris (merci MDN!!)
 {
  const timeNow = new Date();
 
- h1.textContent = timeNow.toLocaleString(
-   navigator.language,
-   {
-    timeZone: "Europe/Paris",
-    weekday: "long",
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    millisecond: "2-digit",
-   }
- );
-}
-setInterval(horlogeParis, 1000);
+ let timeParis = timeNow.toLocaleString(navigator.language, {
+  timeZone: "Europe/Paris",
+  weekday: "long",
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
 
+ let timeMoscou = timeNow.toLocaleString(navigator.language,{
+  timeZone: "Europe/Moscow",
+  weekday: "long",
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
 
-function horlogeMoscou()
-{
- const timeNow = new Date();
+ let timeNewYork = timeNow.toLocaleString(navigator.language,{
+  timeZone: "America/New_York",
+  weekday: "long",
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+})
 
- h1.textContent = timeNow.toLocaleString(
-   navigator.language,
-   {
-    timeZone: "Europe/Moscow",
-    weekday: "long",
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    millisecond: "2-digit",
-   }
- );
-}
-setInterval(horlogeMoscou, 1000);
+ let timeTokio = timeNow.toLocaleString(navigator.language,{
+  timeZone: "Asia/Tokyo",
+  weekday: "long",
+  day: "2-digit",
+  month: "long",
+  year: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+})
+
+ let horlogeActuel = "Paris"
+
+ setInterval(() => {
+  horlogeMonde(horlogeActuel);
+  changerCouleur();
+ }, 1000);
 
 h1.addEventListener("mouseover", function(){
  h1.style.transform = "scale(1.05)";
@@ -64,16 +76,10 @@ h1.addEventListener("mouseover", function(){
 
 h1.addEventListener("mouseout", function(){
  h1.style.transform = "scale(1)";
-});
+})}
 
-btnParis.addEventListener("click", function(){
- horlogeParis();
-});
-
-btnMoscou.addEventListener("click", function(){
- horlogeMoscou();
-})
-
+btnParis.addEventListener("click", () => { fuseauCourant = "Paris"; });
+btnMoscou.addEventListener("click", () => { fuseauCourant = "Moscou"; });
 
 
 
