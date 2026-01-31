@@ -5,51 +5,49 @@ const btn3 = document.getElementById("btn3");
 const btn4 = document.getElementById("btn4");
 const result = document.getElementById("result");
 
-function celsiusToFarhrenhet()
-{
- const valeur = parseFloat(inputValues.value);
- if (isNaN(valeur)) return "Uniquement des nombres svp";
- const resultat = (valeur * 9/5) + 32;
- return `${valeur} °C = ${resultat.toFixed(2)} °F`;
+function celsiusToFarhrenhet(valeur) {
+ return (valeur * 9 / 5) + 32;
 }
 
-function farhrenheitToCelsius()
-{
- const valeur = parseFloat(inputValues.value);
- if (isNaN(valeur)) return "Uniquement des nombres svp";
- const resultat = (valeur -32) / 1.8;
- return `${valeur} °F = ${resultat.toFixed(2)} °C`;
+function farhrenheitToCelsius(valeur) {
+ return (valeur - 32) / 1.8;
 }
 
-function kilometreToMiles()
-{
- const valeur = parseFloat(inputValues.value);
- if (isNaN(valeur)) return "Uniquement des nombres svp";
- const resultat = (valeur *0.621371);
- return `${valeur} KM = ${resultat.toFixed(2)} °Miles)`;
+function kilometreToMiles(valeur) {
+ return valeur * 0.621371
 }
 
-function milesToKm()
-{
+function milesToKm(valeur) {
+ return valeur * 1.60934
+}
+
+function convertir(fonctionConversion, samere, lapute) {
+
  const valeur = parseFloat(inputValues.value);
- if (isNaN(valeur)) return "Uniquement des nombres svp";
- const resultat = (valeur *1.60934);
- return `${valeur} Miles = ${resultat.toFixed(2)} KM)`;
+ if (isNaN(valeur))
+ {
+  result.textContent = "Que des chiffres ou des nombres svp"
+ }
+ const resultatConversion = fonctionConversion(valeur);
+ const resultatArrondi = resultatConversion.toFixed(2);
+
+ result.textContent = `${valeur} ${samere} ${resultatArrondi} ${lapute}`;
 }
 
 btn1.addEventListener("click", () => {
- result.textContent = farhrenheitToCelsius();
+ convertir(celsiusToFarhrenhet, "C°", "F°")
 });
 
 btn2.addEventListener("click", () => {
- result.textContent = celsiusToFarhrenhet();
+ convertir(farhrenheitToCelsius, "F°", "C°")
 });
 
 btn3.addEventListener("click", () => {
- result.textContent = kilometreToMiles();
+ convertir(kilometreToMiles, "Km", "Miles")
 });
+
 btn4.addEventListener("click", () => {
- result.textContent = milesToKm();
-})
+ convertir(milesToKm, "Miles", "Km")
+});
 
 
