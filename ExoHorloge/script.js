@@ -2,7 +2,10 @@
 const couleurs = ["#FF8A65", "#FFB399", "#FFD1A9", "#FFE5CC", "#FFCC99", "#FFAB91"]
 const btnParis = document.getElementById("btnParis")
 const btnMoscou = document.getElementById("btnMoscou")
-
+const btnNY = document.getElementById("btnNY")
+const btnTokyo = document.getElementById("btnTokyo")
+const fuseauActu = document.getElementById("fuseauActu")
+let horlogeActuel = "Paris";
 let index = 0;
 
 function changerCouleur(){
@@ -12,8 +15,6 @@ function changerCouleur(){
   index = 0;
  }
 }
-//setInterval(changerCouleur, 1000);
-
 function horlogeMonde(fuseau = "Paris") //fonction avec para optionnel avec par defaut Paris (merci MDN!!)
 {
  const timeNow = new Date();
@@ -60,14 +61,23 @@ function horlogeMonde(fuseau = "Paris") //fonction avec para optionnel avec par 
   hour: "2-digit",
   minute: "2-digit",
   second: "2-digit",
-})
+});
 
- let horlogeActuel = "Paris"
+ if(fuseau === "Paris"){
+  h1.textContent = `${timeParis}`}
+  fuseauActu.textContent = `Paris`
+ if(fuseau === "Moscou"){
+  h1.textContent = `${timeMoscou}`
+  fuseauActu.textContent = `Moscou`}
+ if (fuseau === "NY"){
+  h1.textContent = `${timeNewYork}`
+  fuseauActu.textContent = `New-York`}
+ if (fuseau === "Tokyo"){
+  h1.textContent = `${timeTokio}`
+  fuseauActu.textContent = `Tokyo`
+ }
+ }
 
- setInterval(() => {
-  horlogeMonde(horlogeActuel);
-  changerCouleur();
- }, 1000);
 
 h1.addEventListener("mouseover", function(){
  h1.style.transform = "scale(1.05)";
@@ -76,12 +86,28 @@ h1.addEventListener("mouseover", function(){
 
 h1.addEventListener("mouseout", function(){
  h1.style.transform = "scale(1)";
-})}
+})
 
-btnParis.addEventListener("click", () => { fuseauCourant = "Paris"; });
-btnMoscou.addEventListener("click", () => { fuseauCourant = "Moscou"; });
+btnParis.addEventListener("click", () => {
+ horlogeActuel = "Paris";
+});
+btnMoscou.addEventListener("click", () => {
+ horlogeActuel = "Moscou";
+});
+btnNY.addEventListener("click", () => {
+horlogeActuel = "NY";
+});
+btnTokyo.addEventListener("click", () => {
+ horlogeActuel = "Tokyo";
+})
+
+setInterval(() => {
+ horlogeMonde(horlogeActuel);
+ changerCouleur();
+}, 1000);
 
 
+//Voila maintenant je vais m'amuser à le rendre D.R.Y :)
 
 
 
