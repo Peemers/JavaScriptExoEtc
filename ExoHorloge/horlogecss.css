@@ -4,22 +4,27 @@
     margin: 0;
 }
 #container {
-    height: 100vh;
+    height: 97vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-shadow: 2px 8px 20px grey;
 }
 #boutons {
     display: flex;
     gap: 15px;
+
 }
 input[type="button"] {
     font-size: 30px;
     padding: 10px 20px;
+    box-shadow: 2px 8px 10px grey;
 }
 
 footer{
     background-color: black;
     text-align: center;
+    color: white;
+    font-size: 35px;
 }

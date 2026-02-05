@@ -8,85 +8,62 @@ const fuseauActu = document.getElementById("fuseauActu")
 let horlogeActuel = "Paris";
 let index = 0;
 
-function changerCouleur(){
+function changerCouleur() {
  document.body.style.backgroundColor = couleurs[index];
  index++;
- if(index >= couleurs.length){
+ if (index >= couleurs.length) {
   index = 0;
  }
 }
-function horlogeMonde(fuseau = "Paris") //fonction avec para optionnel avec par defaut Paris (merci MDN!!)
+
+function timeInterval(){
+ setInterval(() => {
+  horlogeMonde(horlogeActuel);
+  changerCouleur();
+ }, 1000);
+}
+
+const DATE_FORMAT = {
+ weekday: "long",
+ day: "2-digit",
+ month: "long",
+ year: "numeric",
+ hour: "2-digit",
+ minute: "2-digit",
+ second: "2-digit",
+};
+
+const FUSEAU = {
+ "Paris": "Europe/Paris",
+ "Mouscou": "Europe/Moscow",
+ "NY": "America/New_York",
+ "Tokio": "Asia/Tokio"
+};
+
+
+function horlogeMonde(ville = "Paris") //fonction avec para optionnel avec par defaut Paris (merci MDN!!)
 {
  const timeNow = new Date();
 
- let timeParis = timeNow.toLocaleString(navigator.language, {
-  timeZone: "Europe/Paris",
-  weekday: "long",
-  day: "2-digit",
-  month: "long",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-});
+ const zone = FUSEAU[ville] || FUSEAU["Paris"];
 
- let timeMoscou = timeNow.toLocaleString(navigator.language,{
-  timeZone: "Europe/Moscow",
-  weekday: "long",
-  day: "2-digit",
-  month: "long",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-});
+ const formatageDef = timeNow.toLocaleDateString("fr-Fr", {
+  ...DATE_FORMAT,
+  timeZone: zone
+ });
 
- let timeNewYork = timeNow.toLocaleString(navigator.language,{
-  timeZone: "America/New_York",
-  weekday: "long",
-  day: "2-digit",
-  month: "long",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-})
+ h1.textContent = formatageDef;
+ fuseauActu.textContent = ville === "NY" ? "New-York" : ville;
+}
 
- let timeTokio = timeNow.toLocaleString(navigator.language,{
-  timeZone: "Asia/Tokyo",
-  weekday: "long",
-  day: "2-digit",
-  month: "long",
-  year: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-});
-
- if(fuseau === "Paris"){
-  h1.textContent = `${timeParis}`}
-  fuseauActu.textContent = `Paris`
- if(fuseau === "Moscou"){
-  h1.textContent = `${timeMoscou}`
-  fuseauActu.textContent = `Moscou`}
- if (fuseau === "NY"){
-  h1.textContent = `${timeNewYork}`
-  fuseauActu.textContent = `New-York`}
- if (fuseau === "Tokyo"){
-  h1.textContent = `${timeTokio}`
-  fuseauActu.textContent = `Tokyo`
- }
- }
-
-
-h1.addEventListener("mouseover", function(){
+h1.addEventListener("mouseover", function () {
  h1.style.transform = "scale(1.05)";
  h1.style.transition = "transform 0.3s ease-in";
 });
 
-h1.addEventListener("mouseout", function(){
+h1.addEventListener("mouseout", function () {
  h1.style.transform = "scale(1)";
-})
+});
 
 btnParis.addEventListener("click", () => {
  horlogeActuel = "Paris";
@@ -95,21 +72,10 @@ btnMoscou.addEventListener("click", () => {
  horlogeActuel = "Moscou";
 });
 btnNY.addEventListener("click", () => {
-horlogeActuel = "NY";
+ horlogeActuel = "NY";
 });
 btnTokyo.addEventListener("click", () => {
  horlogeActuel = "Tokyo";
-})
+});
 
-setInterval(() => {
- horlogeMonde(horlogeActuel);
- changerCouleur();
-}, 1000);
-
-
-//Voila maintenant je vais m'amuser à le rendre D.R.Y :)
-
-
-
-
-
+timeInterval();
